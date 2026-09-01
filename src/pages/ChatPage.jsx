@@ -80,7 +80,12 @@ export default function ChatPage() {
         </header>
 
         {/* Messages */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+        <div
+          ref={scrollRef}
+          aria-live="polite"
+          aria-label={t("chat.messages")}
+          className="flex-1 overflow-y-auto px-5 py-4 space-y-4"
+        >
           {messages.map((m, i) => (
             <div
               key={i}

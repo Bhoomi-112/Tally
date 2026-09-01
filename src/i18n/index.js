@@ -98,6 +98,7 @@ const en = {
     footnote: "Answers are grounded in Census 2011 data · PII-scan enabled",
     connectionError: "Connection error: {{msg}}",
     errorPrefix: "Error: ",
+    messages: "Chat messages",
   },
   census: {
     title: "Census Data Explorer",
@@ -170,6 +171,9 @@ const hi = {
       " है और भारत के महापंजीयक द्वारा समर्थित नहीं है।",
     officialNote: " आधिकारिक पोर्टल है।",
   },
+  a11y: {
+    skipToContent: "मुख्य सामग्री पर जाएँ",
+  },
   home: {
     goodMorning: "सुप्रभात",
     goodAfternoon: "नमस्ते",
@@ -229,6 +233,7 @@ const hi = {
     footnote: "उत्तर जनगणना 2011 डेटा पर आधारित हैं · PII-स्कैन सक्षम",
     connectionError: "कनेक्शन त्रुटि: {{msg}}",
     errorPrefix: "त्रुटि: ",
+    messages: "चैट संदेश",
   },
   census: {
     title: "जनगणना डेटा एक्सप्लोरर",
