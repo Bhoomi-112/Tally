@@ -17,9 +17,12 @@ export default function AppLayout() {
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <a href="#main-content" className="skip-link">
+        {t("a11y.skipToContent")}
+      </a>
       <Navbar onSearchOpen={handleSearchOpen} />
       <SearchModal open={searchOpen} onClose={handleSearchClose} />
-      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+      <div id="main-content" style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Outlet />
       </div>
 

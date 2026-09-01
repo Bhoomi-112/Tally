@@ -35,6 +35,9 @@ const en = {
     text3: " affiliated with or endorsed by the Registrar General of India.",
     officialNote: " is the official portal.",
   },
+  a11y: {
+    skipToContent: "Skip to content",
+  },
   home: {
     goodMorning: "Good morning",
     goodAfternoon: "Good afternoon",
