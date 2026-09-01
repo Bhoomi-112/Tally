@@ -298,6 +298,22 @@ textarea {
   }
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 0;
+  background: var(--color-terracotta);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 0 0 6px 0;
+  text-decoration: none;
+  font-weight: 600;
+}
+
 #root {
   display: flex;
   flex-direction: column;
