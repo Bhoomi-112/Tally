@@ -96,6 +96,7 @@ export default function Navbar({ onSearchOpen }) {
             { to: "/dates", label: "Dates" },
             { to: "/wizard", label: "Wizard" },
             { to: "/chat", label: "Chat" },
+            { to: "/census-data", label: "Census" },
             { to: "/privacy", label: "Privacy" },
             { to: "/viz", label: "Data" },
           ].map(({ to, label }) => (
@@ -246,6 +247,7 @@ export default function Navbar({ onSearchOpen }) {
             { to: "/dates", label: "📅 Dates" },
             { to: "/wizard", label: "🧭 Wizard" },
             { to: "/chat", label: "💬 Chat" },
+            { to: "/census-data", label: "📊 Census" },
             { to: "/privacy", label: "🔒 Privacy" },
             { to: "/viz", label: "📊 Data" },
           ].map(({ to, label }) => (

@@ -1,4 +1,8 @@
 import "dotenv/config";
+import dotenv from "dotenv";
+
+// Load .env.local (git-ignored secrets) on top of .env defaults.
+dotenv.config({ path: ".env.local", override: false });
 
 // ────────────────────────────────────────────────────────────
 // Server configuration — reads env vars with sensible defaults.
@@ -27,6 +31,9 @@ export const config = {
 
   firebase: {
     projectId: env.GAE_SERVICE || env.FIREBASE_PROJECT_ID || env.VITE_FIREBASE_PROJECT_ID || "",
+    serviceAccount: env.FIREBASE_SERVICE_ACCOUNT
+      ? JSON.parse(env.FIREBASE_SERVICE_ACCOUNT)
+      : null,
   },
 
   corsOrigin: env.CORS_ORIGIN || "*",

@@ -8,6 +8,9 @@ import WizardPage from "./modules/wizard/WizardPage.jsx";
 import ComingSoon from "./pages/ComingSoon.jsx";
 import IntelPage from "./intel/IntelPage.jsx";
 import StudioPage from "./studio/StudioPage.jsx";
+import ChatPage from "./pages/ChatPage.jsx";
+import CensusDataPage from "./pages/CensusDataPage.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
 
 export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -21,6 +24,9 @@ export default function App() {
         <Route path="/intel" element={<IntelPage />} />
         <Route path="/viz" element={<IntelPage />} />
         <Route path="/studio" element={<StudioPage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/census-data" element={<CensusDataPage />} />
+        <Route path="/auth" element={<AuthPage />} />
       </Routes>
 
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -31,7 +37,6 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/dates" element={<DatesPage />} />
             <Route path="/wizard" element={<WizardPage />} />
-            <Route path="/chat" element={<ComingSoon title="AI Explainer" icon="💬" />} />
             <Route path="/privacy" element={<ComingSoon title="Privacy Guide" icon="🔒" />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

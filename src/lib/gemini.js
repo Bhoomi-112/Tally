@@ -1,7 +1,7 @@
 /**
  * gemini.js — Free-tier Gemini API client wrapper
  *
- * Uses @google/generative-ai SDK with gemini-2.0-flash (free tier).
+ * Uses @google/generative-ai SDK with gemini-3.6-flash (free tier).
  * All inputs are scanned by pii-guard before reaching the API.
  * Rate limit: 15 RPM on the free tier — enforced by a simple queue.
  *
@@ -15,7 +15,7 @@ import { scanForPii } from "./pii-guard.js";
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 // Free-tier model
-const MODEL_NAME = "gemini-2.0-flash";
+const MODEL_NAME = "gemini-3.6-flash";
 
 // Simple rate-limit queue (15 RPM = 1 request per 4 seconds)
 const MIN_INTERVAL_MS = 4000;
