@@ -1,0 +1,766 @@
+{
+  "_meta": {
+    "description": "Census 2027 state-wise self-enumeration and survey date ranges",
+    "source": "Based on Census of India 2027 schedule announcements. All entries provisional pending official PIB notifications.",
+    "lastUpdated": "2026-09-01",
+    "disclaimer": "These dates are provisional and based on publicly available announcements. Always verify at https://censusindia.gov.in before planning."
+  },
+  "states": [
+    {
+      "id": "AN",
+      "name": "Andaman & Nicobar Islands",
+      "region": "Islands",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "AP",
+      "name": "Andhra Pradesh",
+      "region": "South",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "AR",
+      "name": "Arunachal Pradesh",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "AS",
+      "name": "Assam",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "BR",
+      "name": "Bihar",
+      "region": "East",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "CH",
+      "name": "Chandigarh",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "CG",
+      "name": "Chhattisgarh",
+      "region": "Central",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "DNH",
+      "name": "Dadra & Nagar Haveli and Daman & Diu",
+      "region": "West",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "DL",
+      "name": "Delhi",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "GA",
+      "name": "Goa",
+      "region": "West",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "GJ",
+      "name": "Gujarat",
+      "region": "West",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "HR",
+      "name": "Haryana",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "HP",
+      "name": "Himachal Pradesh",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-05-01",
+        "end": "2026-10-31",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "JK",
+      "name": "Jammu & Kashmir",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-05-01",
+        "end": "2026-10-31",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "JH",
+      "name": "Jharkhand",
+      "region": "East",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "KA",
+      "name": "Karnataka",
+      "region": "South",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "KL",
+      "name": "Kerala",
+      "region": "South",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "LA",
+      "name": "Ladakh",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-06-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "LD",
+      "name": "Lakshadweep",
+      "region": "Islands",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "MP",
+      "name": "Madhya Pradesh",
+      "region": "Central",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "MH",
+      "name": "Maharashtra",
+      "region": "West",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "MN",
+      "name": "Manipur",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "ML",
+      "name": "Meghalaya",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "MZ",
+      "name": "Mizoram",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "NL",
+      "name": "Nagaland",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "OD",
+      "name": "Odisha",
+      "region": "East",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "PY",
+      "name": "Puducherry",
+      "region": "South",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "PB",
+      "name": "Punjab",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "RJ",
+      "name": "Rajasthan",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "SK",
+      "name": "Sikkim",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-05-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "TN",
+      "name": "Tamil Nadu",
+      "region": "South",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "TG",
+      "name": "Telangana",
+      "region": "South",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "TR",
+      "name": "Tripura",
+      "region": "Northeast",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "UP",
+      "name": "Uttar Pradesh",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "UK",
+      "name": "Uttarakhand",
+      "region": "North",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-05-01",
+        "end": "2026-10-31",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    },
+    {
+      "id": "WB",
+      "name": "West Bengal",
+      "region": "East",
+      "phaseI": {
+        "label": "Houselisting & Housing Census",
+        "start": "2026-04-01",
+        "end": "2026-09-30",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      },
+      "phaseII": {
+        "label": "Population Enumeration",
+        "start": "2027-02-09",
+        "end": "2027-02-28",
+        "source": "https://censusindia.gov.in",
+        "lastVerified": "2026-09-01",
+        "provisional": true
+      }
+    }
+  ]
+}
