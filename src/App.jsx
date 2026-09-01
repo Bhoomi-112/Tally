@@ -1,15 +1,31 @@
+import { useState, useCallback } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
+import SearchModal from "./components/SearchModal.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import DatesPage from "./modules/dates/DatesPage.jsx";
 import WizardPage from "./modules/wizard/WizardPage.jsx";
 import ComingSoon from "./pages/ComingSoon.jsx";
+import IntelPage from "./intel/IntelPage.jsx";
+import StudioPage from "./studio/StudioPage.jsx";
 
 export default function App() {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const handleSearchOpen = useCallback(() => setSearchOpen(true), []);
+  const handleSearchClose = useCallback(() => setSearchOpen(false), []);
+
   return (
     <BrowserRouter>
+      {/* Dedicated full-chrome pages (own backgrounds/shells, no shared nav/footer) */}
+      <Routes>
+        <Route path="/intel" element={<IntelPage />} />
+        <Route path="/viz" element={<IntelPage />} />
+        <Route path="/studio" element={<StudioPage />} />
+      </Routes>
+
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-        <Navbar />
+        <Navbar onSearchOpen={handleSearchOpen} />
+        <SearchModal open={searchOpen} onClose={handleSearchClose} />
         <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -17,19 +33,26 @@ export default function App() {
             <Route path="/wizard" element={<WizardPage />} />
             <Route path="/chat" element={<ComingSoon title="AI Explainer" icon="💬" />} />
             <Route path="/privacy" element={<ComingSoon title="Privacy Guide" icon="🔒" />} />
-            <Route path="/viz" element={<ComingSoon title="Data Explorer" icon="📊" />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
 
         <footer className="footer">
-          <div className="container">
-            Tally is an assistive layer for Census 2027 — it is{" "}
-            <strong>not</strong> affiliated with or endorsed by the Registrar General of India.{" "}
-            <a href="https://censusindia.gov.in" target="_blank" rel="noopener noreferrer">
-              censusindia.gov.in
-            </a>{" "}
-            is the official portal.
+          <div className="container footer-inner">
+            <span className="footer-mark">🗳️ Tally</span>
+            <p className="footer-text">
+              An assistive layer for Census 2027 — <strong>not</strong> affiliated with or endorsed
+              by the Registrar General of India.{" "}
+              <a
+                href="https://censusindia.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--color-terracotta)", fontWeight: 600 }}
+              >
+                censusindia.gov.in
+              </a>{" "}
+              is the official portal.
+            </p>
           </div>
         </footer>
       </div>

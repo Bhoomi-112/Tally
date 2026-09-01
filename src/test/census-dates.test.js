@@ -28,14 +28,11 @@ describe("census-dates.json schema", () => {
     expect(unique.size).toBe(ids.length);
   });
 
-  it.each(censusData.states)(
-    "state '$name' ($id) has all required top-level fields",
-    (state) => {
-      for (const field of REQUIRED_STATE_FIELDS) {
-        expect(state, `Missing field: ${field} in ${state.id}`).toHaveProperty(field);
-      }
+  it.each(censusData.states)("state '$name' ($id) has all required top-level fields", (state) => {
+    for (const field of REQUIRED_STATE_FIELDS) {
+      expect(state, `Missing field: ${field} in ${state.id}`).toHaveProperty(field);
     }
-  );
+  });
 
   it.each(censusData.states)(
     "state '$name' ($id) Phase I has all required phase fields and valid dates",

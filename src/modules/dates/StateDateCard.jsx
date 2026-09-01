@@ -7,7 +7,10 @@ function CountdownBadge({ start, end }) {
   if (status === "active") {
     const daysLeft = Math.ceil((new Date(end + "T00:00:00") - today) / 86400000);
     return (
-      <span className="countdown countdown-active" aria-label={`Active — ${daysLeft} days remaining`}>
+      <span
+        className="countdown countdown-active"
+        aria-label={`Active — ${daysLeft} days remaining`}
+      >
         ● Active · {daysLeft}d left
       </span>
     );
@@ -29,23 +32,23 @@ function CountdownBadge({ start, end }) {
 
 function PhaseBlock({ phase, phaseKey }) {
   return (
-    <div className={`phase-block ${phaseKey === "phaseI" ? "phase-block-1" : "phase-block-2"}`}>
-      {/* Tag */}
-      <div className={`phase-label-tag ${phaseKey === "phaseI" ? "phase-label-tag-1" : "phase-label-tag-2"}`}>
+    <div className={`phase-block`}>
+      <div
+        className={`phase-label-tag ${phaseKey === "phaseI" ? "phase-label-tag-1" : "phase-label-tag-2"}`}
+      >
         {phaseKey === "phaseI" ? "Phase I" : "Phase II"}
       </div>
 
-      {/* Description */}
       <div className="phase-name">{phase.label}</div>
 
-      {/* Dates */}
       <div className="phase-dates">
         <time dateTime={phase.start}>{formatDate(phase.start)}</time>
-        <span className="phase-date-arrow" aria-hidden="true">→</span>
+        <span className="phase-date-arrow" aria-hidden="true">
+          →
+        </span>
         <time dateTime={phase.end}>{formatDate(phase.end)}</time>
       </div>
 
-      {/* Bottom row: countdown + source */}
       <div className="phase-meta-row">
         <CountdownBadge start={phase.start} end={phase.end} />
         <a
@@ -76,7 +79,9 @@ export default function StateDateCard({ state }) {
       <header className="state-card-header">
         <div>
           <h2 className="state-name">{name}</h2>
-          <p className="state-meta">{region} · {id}</p>
+          <p className="state-meta">
+            {region} · {id}
+          </p>
         </div>
         {isProvisional && (
           <span className="badge badge-provisional" title="Dates are provisional">

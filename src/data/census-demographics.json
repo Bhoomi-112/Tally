@@ -1,0 +1,268 @@
+{
+  "_meta": {
+    "description": "Census 2011-2026 demographic indicators and projections for India's states & UTs",
+    "source": "Based on Census of India 2011, Sample Registration System, and National Family Health Survey. Values are model projections and illustrative for the dashboard; always verify at https://censusindia.gov.in.",
+    "lastUpdated": "2026-09-01",
+    "disclaimer": "These figures are provisional, model-based projections for demonstration purposes. Census 2027 enumeration will provide the authoritative figures."
+  },
+  "national": {
+    "population": 1441700000,
+    "populationDeltaYoY": 0.8,
+    "sexRatio": 948,
+    "sexRatioBaseline": 940,
+    "literacy": {
+      "overall": 77.7,
+      "primary": 88.4,
+      "secondary": 69.3,
+      "higher": 27.4
+    },
+    "literacyBaseline": 73.9,
+    "medianAge": 29.1,
+    "workingAgeShare": 62.4,
+    "youthShare": 17.2,
+    "seniorShare": 10.4,
+    "urbanShare": 36.5,
+    "urbanShareBaseline": 31.2,
+    "confidence": 99.4
+  },
+  "agePyramid": [
+    { "ageGroup": "0-4", "male": 7.1, "female": 6.6 },
+    { "ageGroup": "5-9", "male": 7.8, "female": 7.3 },
+    { "ageGroup": "10-14", "male": 8.4, "female": 8.1 },
+    { "ageGroup": "15-19", "male": 8.9, "female": 8.5 },
+    { "ageGroup": "20-24", "male": 9.1, "female": 8.8 },
+    { "ageGroup": "25-29", "male": 8.7, "female": 8.6 },
+    { "ageGroup": "30-34", "male": 8.1, "female": 8.2 },
+    { "ageGroup": "35-39", "male": 7.6, "female": 7.7 },
+    { "ageGroup": "40-44", "male": 6.9, "female": 7.0 },
+    { "ageGroup": "45-49", "male": 6.2, "female": 6.3 },
+    { "ageGroup": "50-54", "male": 5.4, "female": 5.5 },
+    { "ageGroup": "55-59", "male": 4.4, "female": 4.5 },
+    { "ageGroup": "60-64", "male": 3.5, "female": 3.7 },
+    { "ageGroup": "65-69", "male": 2.6, "female": 2.9 },
+    { "ageGroup": "70-74", "male": 1.8, "female": 2.1 },
+    { "ageGroup": "75+", "male": 1.7, "female": 2.2 }
+  ],
+  "urbanizationTrend": [
+    { "year": 1991, "urban": 25.7 },
+    { "year": 1996, "urban": 26.9 },
+    { "year": 2001, "urban": 27.8 },
+    { "year": 2006, "urban": 29.4 },
+    { "year": 2011, "urban": 31.2 },
+    { "year": 2016, "urban": 33.2 },
+    { "year": 2021, "urban": 35.1 },
+    { "year": 2026, "urban": 36.5 }
+  ],
+  "states": {
+    "MH": {
+      "name": "Maharashtra",
+      "region": "West",
+      "population": 125600000,
+      "sexRatio": 929,
+      "literacy": 82.3,
+      "urbanShare": 45.8,
+      "medianAge": 30.2,
+      "workingAgeShare": 63.1
+    },
+    "UP": {
+      "name": "Uttar Pradesh",
+      "region": "North",
+      "population": 231600000,
+      "sexRatio": 912,
+      "literacy": 67.7,
+      "urbanShare": 23.4,
+      "medianAge": 25.5,
+      "workingAgeShare": 61.2
+    },
+    "BR": {
+      "name": "Bihar",
+      "region": "East",
+      "population": 126200000,
+      "sexRatio": 918,
+      "literacy": 63.8,
+      "urbanShare": 11.8,
+      "medianAge": 24.1,
+      "workingAgeShare": 59.8
+    },
+    "WB": {
+      "name": "West Bengal",
+      "region": "East",
+      "population": 100600000,
+      "sexRatio": 938,
+      "literacy": 76.8,
+      "urbanShare": 31.9,
+      "medianAge": 29.8,
+      "workingAgeShare": 62.7
+    },
+    "MP": {
+      "name": "Madhya Pradesh",
+      "region": "Central",
+      "population": 82400000,
+      "sexRatio": 931,
+      "literacy": 70.6,
+      "urbanShare": 28.9,
+      "medianAge": 26.3,
+      "workingAgeShare": 61.5
+    },
+    "TN": {
+      "name": "Tamil Nadu",
+      "region": "South",
+      "population": 75400000,
+      "sexRatio": 948,
+      "literacy": 80.2,
+      "urbanShare": 36.1,
+      "medianAge": 31.4,
+      "workingAgeShare": 63.8
+    },
+    "RJ": {
+      "name": "Rajasthan",
+      "region": "North",
+      "population": 81100000,
+      "sexRatio": 928,
+      "literacy": 67.4,
+      "urbanShare": 25.2,
+      "medianAge": 25.6,
+      "workingAgeShare": 61.1
+    },
+    "KA": {
+      "name": "Karnataka",
+      "region": "South",
+      "population": 68900000,
+      "sexRatio": 973,
+      "literacy": 75.6,
+      "urbanShare": 40.2,
+      "medianAge": 29.9,
+      "workingAgeShare": 62.9
+    },
+    "GJ": {
+      "name": "Gujarat",
+      "region": "West",
+      "population": 69200000,
+      "sexRatio": 919,
+      "literacy": 78.4,
+      "urbanShare": 43.1,
+      "medianAge": 29.4,
+      "workingAgeShare": 63.4
+    },
+    "AP": {
+      "name": "Andhra Pradesh",
+      "region": "South",
+      "population": 54800000,
+      "sexRatio": 996,
+      "literacy": 66.4,
+      "urbanShare": 30.5,
+      "medianAge": 28.7,
+      "workingAgeShare": 62.2
+    },
+    "OD": {
+      "name": "Odisha",
+      "region": "East",
+      "population": 47600000,
+      "sexRatio": 979,
+      "literacy": 72.9,
+      "urbanShare": 18.6,
+      "medianAge": 28.1,
+      "workingAgeShare": 62.4
+    },
+    "KL": {
+      "name": "Kerala",
+      "region": "South",
+      "population": 36100000,
+      "sexRatio": 1087,
+      "literacy": 94.2,
+      "urbanShare": 46.3,
+      "medianAge": 34.1,
+      "workingAgeShare": 59.4
+    },
+    "TG": {
+      "name": "Telangana",
+      "region": "South",
+      "population": 38600000,
+      "sexRatio": 988,
+      "literacy": 72.8,
+      "urbanShare": 40.1,
+      "medianAge": 28.9,
+      "workingAgeShare": 62.7
+    },
+    "AS": {
+      "name": "Assam",
+      "region": "Northeast",
+      "population": 34600000,
+      "sexRatio": 958,
+      "literacy": 72.4,
+      "urbanShare": 15.7,
+      "medianAge": 27.3,
+      "workingAgeShare": 62.1
+    },
+    "PB": {
+      "name": "Punjab",
+      "region": "North",
+      "population": 30600000,
+      "sexRatio": 897,
+      "literacy": 76.7,
+      "urbanShare": 38.2,
+      "medianAge": 30.7,
+      "workingAgeShare": 63.6
+    },
+    "JH": {
+      "name": "Jharkhand",
+      "region": "East",
+      "population": 37200000,
+      "sexRatio": 948,
+      "literacy": 67.6,
+      "urbanShare": 24.5,
+      "medianAge": 26.1,
+      "workingAgeShare": 61.7
+    },
+    "HR": {
+      "name": "Haryana",
+      "region": "North",
+      "population": 29700000,
+      "sexRatio": 879,
+      "literacy": 76.1,
+      "urbanShare": 36.7,
+      "medianAge": 28.4,
+      "workingAgeShare": 63.2
+    },
+    "CG": {
+      "name": "Chhattisgarh",
+      "region": "Central",
+      "population": 29700000,
+      "sexRatio": 991,
+      "literacy": 71.2,
+      "urbanShare": 24.1,
+      "medianAge": 26.4,
+      "workingAgeShare": 62.3
+    },
+    "DL": {
+      "name": "Delhi",
+      "region": "North",
+      "population": 20200000,
+      "sexRatio": 868,
+      "literacy": 88.5,
+      "urbanShare": 97.5,
+      "medianAge": 28.9,
+      "workingAgeShare": 64.1
+    },
+    "JK": {
+      "name": "Jammu & Kashmir",
+      "region": "North",
+      "population": 14100000,
+      "sexRatio": 889,
+      "literacy": 67.2,
+      "urbanShare": 27.2,
+      "medianAge": 25.3,
+      "workingAgeShare": 61.3
+    },
+    "UK": {
+      "name": "Uttarakhand",
+      "region": "North",
+      "population": 12400000,
+      "sexRatio": 963,
+      "literacy": 79.6,
+      "urbanShare": 30.5,
+      "medianAge": 28.9,
+      "workingAgeShare": 62.8
+    }
+  }
+}

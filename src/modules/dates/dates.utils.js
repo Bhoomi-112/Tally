@@ -44,7 +44,10 @@ export function getStatusMeta(status) {
     case "active":
       return { label: "Active Now", className: "badge-completed" };
     case "completed":
-      return { label: "Completed", className: "badge bg-slate-500/20 text-slate-300 border border-slate-500/30" };
+      return {
+        label: "Completed",
+        className: "badge bg-slate-500/20 text-slate-300 border border-slate-500/30",
+      };
     case "upcoming":
     default:
       return { label: "Upcoming", className: "badge-provisional" };

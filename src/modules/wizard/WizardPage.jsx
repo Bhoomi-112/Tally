@@ -1,16 +1,23 @@
 import { useState, useCallback } from "react";
 import { PHASE_I_QUESTIONS, PHASE_II_QUESTIONS } from "./wizard-questions.js";
 
-// ── Sub-components ────────────────────────────────────────────────
-
 function ProgressBar({ current, total }) {
   const pct = total > 0 ? Math.round((current / total) * 100) : 0;
   return (
     <div className="wizard-progress">
-      <div className="progress-bar-track" role="progressbar" aria-valuenow={current} aria-valuemin={0} aria-valuemax={total} aria-label={`Question ${current} of ${total}`}>
+      <div
+        className="progress-bar-track"
+        role="progressbar"
+        aria-valuenow={current}
+        aria-valuemin={0}
+        aria-valuemax={total}
+        aria-label={`Question ${current} of ${total}`}
+      >
         <div className="progress-bar-fill" style={{ width: `${pct}%` }} />
       </div>
-      <div className="progress-text">{current} / {total} questions</div>
+      <div className="progress-text">
+        {current} / {total} questions
+      </div>
     </div>
   );
 }
@@ -18,7 +25,7 @@ function ProgressBar({ current, total }) {
 function RadioQuestion({ question, value, onChange }) {
   return (
     <div className="radio-group" role="radiogroup" aria-labelledby={`q-label-${question.id}`}>
-      {question.options.map(opt => (
+      {question.options.map((opt) => (
         <label
           key={opt}
           className={`radio-option${value === opt ? " selected" : ""}`}
@@ -50,9 +57,10 @@ function TextQuestion({ question, value, onChange, error }) {
         id={question.id}
         type="text"
         className="input"
+        style={{ width: "100%" }}
         placeholder={question.placeholder || "Type your answer…"}
         value={value || ""}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
         aria-describedby={error ? `${question.id}-error` : undefined}
       />
@@ -72,16 +80,17 @@ function NumberQuestion({ question, value, onChange, error }) {
         id={question.id}
         type="number"
         className="input"
+        style={{ width: "100%" }}
         placeholder={question.placeholder || "Enter a number"}
         value={value || ""}
         min={question.min}
         max={question.max}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
         aria-describedby={error ? `${question.id}-error` : undefined}
       />
       {question.min !== undefined && question.max !== undefined && (
-        <p style={{ fontSize: "0.75rem", color: "#475569", marginTop: "0.25rem" }}>
+        <p style={{ fontSize: "0.72rem", color: "var(--color-ink-3-light)", marginTop: "0.3rem" }}>
           Range: {question.min} – {question.max}
         </p>
       )}
@@ -101,15 +110,15 @@ function DateQuestion({ question, value, onChange }) {
         id={question.id}
         type="date"
         className="input"
+        style={{ width: "100%" }}
         value={value || ""}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         max={new Date().toISOString().split("T")[0]}
       />
     </div>
   );
 }
 
-// ── Validation ────────────────────────────────────────────────────
 function validate(question, value) {
   if (question.optional && !value) return null;
   if (!value && value !== 0) return "This question is required.";
@@ -122,67 +131,92 @@ function validate(question, value) {
   return null;
 }
 
-// ── Summary screen ────────────────────────────────────────────────
 function SummaryScreen({ phase, questions, answers, onRestart, onBack }) {
-  const filledCount = questions.filter(q => answers[q.id]).length;
+  const filledCount = questions.filter((q) => answers[q.id]).length;
 
   return (
-    <div className="summary-card card animate-slide-up">
-      <div className="summary-title">✅ Phase {phase === "I" ? "I" : "II"} Walkthrough Complete</div>
+    <div className="card question-card animate-fade-up" style={{ animationDuration: ".5s" }}>
+      <div className="summary-title" style={{ marginBottom: ".7rem" }}>
+        ✅ Phase {phase === "I" ? "I" : "II"} Walkthrough Complete
+      </div>
 
-      <p style={{ textAlign: "center", color: "#64748b", fontSize: "0.875rem", marginBottom: "1.25rem" }}>
-        You answered <strong style={{ color: "white" }}>{filledCount}</strong> of {questions.length} questions.
-        Review your answers below — nothing has been saved.
+      <p
+        style={{
+          textAlign: "center",
+          color: "var(--color-ink-3-light)",
+          fontSize: "0.875rem",
+          marginBottom: "1.25rem",
+        }}
+      >
+        You answered <strong style={{ color: "var(--color-ink-light)" }}>{filledCount}</strong> of{" "}
+        {questions.length} questions. Review your answers below — nothing has been saved.
       </p>
 
-      <div className="summary-list" style={{ maxHeight: "18rem", overflowY: "auto" }}>
-        {questions.map(q => (
+      <div className="summary-list">
+        {questions.map((q) =>
           answers[q.id] ? (
             <div key={q.id} className="summary-row">
-              <span className="summary-q">Q{q.number}. {q.text}</span>
+              <span className="summary-q">
+                Q{q.number}. {q.text}
+              </span>
               <span className="summary-a">{answers[q.id]}</span>
             </div>
           ) : null
-        ))}
+        )}
       </div>
 
-      {/* ⚠️ PII warning */}
       <div className="disclaimer" style={{ marginBottom: "1.25rem" }}>
         <span aria-hidden="true">🔒</span>
         <span>
-          <strong>Your data stays local.</strong> Nothing above has been sent anywhere.
-          To officially submit, use the button below to go to the government portal.
+          <strong>Your data stays local.</strong> Nothing above has been sent anywhere. To
+          officially submit, use the button below to go to the government portal.
         </span>
       </div>
 
-      {/* Handoff CTA */}
       <div className="handoff-box">
-        <p style={{ fontWeight: 700, color: "white", marginBottom: "0.5rem", fontSize: "1rem" }}>
+        <p
+          style={{
+            fontFamily: "var(--color-ink-light)",
+            fontWeight: 700,
+            color: "var(--color-ink-light)",
+            marginBottom: "0.5rem",
+            fontSize: "1rem",
+          }}
+        >
           Ready to officially self-enumerate?
         </p>
-        <p style={{ color: "#64748b", fontSize: "0.875rem", marginBottom: "1.25rem" }}>
+        <p
+          style={{
+            color: "var(--color-ink-3-light)",
+            fontSize: "0.875rem",
+            marginBottom: "1.25rem",
+          }}
+        >
           Tally never submits on your behalf. Click below to go to the official portal.
         </p>
         <a
           href="https://censusindia.gov.in"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-primary"
+          className="btn btn-primary"
           style={{ width: "100%", justifyContent: "center" }}
         >
           Go to Official Portal ↗
         </a>
       </div>
 
-      <div className="flex gap-3 mt-4">
-        <button className="btn-ghost" style={{ flex: 1 }} onClick={onBack}>← Back</button>
-        <button className="btn-ghost" style={{ flex: 1 }} onClick={onRestart}>🔄 Start Over</button>
+      <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem" }}>
+        <button className="btn btn-ghost" style={{ flex: 1 }} onClick={onBack}>
+          ← Back
+        </button>
+        <button className="btn btn-ghost" style={{ flex: 1 }} onClick={onRestart}>
+          🔄 Start Over
+        </button>
       </div>
     </div>
   );
 }
 
-// ── Main Wizard Component ─────────────────────────────────────────
 export default function WizardPage() {
   const [activePhase, setActivePhase] = useState("I");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -202,26 +236,29 @@ export default function WizardPage() {
     setShowSummary(false);
   };
 
-  const handleAnswer = useCallback((val) => {
-    setAnswers(prev => ({ ...prev, [question.id]: val }));
-    setErrors(prev => ({ ...prev, [question.id]: null }));
-  }, [question]);
+  const handleAnswer = useCallback(
+    (val) => {
+      setAnswers((prev) => ({ ...prev, [question.id]: val }));
+      setErrors((prev) => ({ ...prev, [question.id]: null }));
+    },
+    [question]
+  );
 
   const handleNext = () => {
     const err = validate(question, currentValue);
     if (err) {
-      setErrors(prev => ({ ...prev, [question.id]: err }));
+      setErrors((prev) => ({ ...prev, [question.id]: err }));
       return;
     }
     if (currentIndex < questions.length - 1) {
-      setCurrentIndex(i => i + 1);
+      setCurrentIndex((i) => i + 1);
     } else {
       setShowSummary(true);
     }
   };
 
   const handleBack = () => {
-    if (currentIndex > 0) setCurrentIndex(i => i - 1);
+    if (currentIndex > 0) setCurrentIndex((i) => i - 1);
     if (showSummary) setShowSummary(false);
   };
 
@@ -233,7 +270,7 @@ export default function WizardPage() {
   };
 
   const handleSkip = () => {
-    if (currentIndex < questions.length - 1) setCurrentIndex(i => i + 1);
+    if (currentIndex < questions.length - 1) setCurrentIndex((i) => i + 1);
     else setShowSummary(true);
   };
 
@@ -242,19 +279,22 @@ export default function WizardPage() {
       <div className="container">
         <div className="wizard-container">
           {/* Header */}
-          <div className="wizard-header animate-slide-up">
-            <span style={{ fontSize: "2.5rem" }} aria-hidden="true">🧭</span>
-            <h1 className="section-title gradient-text" style={{ marginTop: "0.5rem" }}>
-              Enumeration Wizard
-            </h1>
-            <p style={{ color: "#64748b", fontSize: "0.875rem", marginTop: "0.5rem", lineHeight: 1.7 }}>
-              Step through the official Census 2027 questions. Answers stay in your browser — nothing is sent anywhere.
+          <div className="wizard-header animate-fade-up">
+            <div className="page-title-row" style={{ marginBottom: ".5rem" }}>
+              <span style={{ fontSize: "2.5rem" }} aria-hidden="true">
+                🧭
+              </span>
+              <h1 className="section-title">Enumeration Wizard</h1>
+            </div>
+            <p className="page-desc">
+              Step through the official Census 2027 questions. Answers stay in your browser —
+              nothing is sent anywhere.
             </p>
           </div>
 
           {/* Phase tabs */}
-          <div className="wizard-phase-tabs animate-fade-in delay-100">
-            {["I", "II"].map(phase => (
+          <div className="wizard-phase-tabs animate-fade-up delay-100">
+            {["I", "II"].map((phase) => (
               <button
                 key={phase}
                 id={`phase-tab-${phase}`}
@@ -263,9 +303,7 @@ export default function WizardPage() {
                 aria-selected={activePhase === phase}
               >
                 Phase {phase}
-                <span style={{ display: "block", fontSize: "0.7rem", fontWeight: 400, marginTop: "0.125rem", opacity: 0.8 }}>
-                  {phase === "I" ? "Houselisting" : "Population Enumeration"}
-                </span>
+                <span>{phase === "I" ? "Houselisting" : "Population Enumeration"}</span>
               </button>
             ))}
           </div>
@@ -277,7 +315,10 @@ export default function WizardPage() {
               questions={questions}
               answers={answers}
               onRestart={handleRestart}
-              onBack={() => { setShowSummary(false); setCurrentIndex(questions.length - 1); }}
+              onBack={() => {
+                setShowSummary(false);
+                setCurrentIndex(questions.length - 1);
+              }}
             />
           ) : (
             <>
@@ -285,11 +326,19 @@ export default function WizardPage() {
               <ProgressBar current={currentIndex + 1} total={questions.length} />
 
               {/* Question card */}
-              <div className="card question-card animate-slide-right" key={question.id}>
+              <div className="card question-card animate-spring-x" key={question.id}>
                 <div className="question-number" id={`q-label-${question.id}`}>
                   Question {question.number} of {questions.length}
                   {question.optional && (
-                    <span style={{ marginLeft: "0.5rem", color: "#475569", textTransform: "none", fontSize: "0.65rem", letterSpacing: 0 }}>
+                    <span
+                      style={{
+                        marginLeft: "0.5rem",
+                        color: "var(--color-ink-4-light)",
+                        textTransform: "none",
+                        fontSize: "0.65rem",
+                        letterSpacing: 0,
+                      }}
+                    >
                       (optional)
                     </span>
                   )}
@@ -303,13 +352,8 @@ export default function WizardPage() {
                   </div>
                 )}
 
-                {/* Render correct input type */}
                 {question.type === "radio" && (
-                  <RadioQuestion
-                    question={question}
-                    value={currentValue}
-                    onChange={handleAnswer}
-                  />
+                  <RadioQuestion question={question} value={currentValue} onChange={handleAnswer} />
                 )}
                 {question.type === "text" && (
                   <TextQuestion
@@ -328,23 +372,20 @@ export default function WizardPage() {
                   />
                 )}
                 {question.type === "date" && (
-                  <DateQuestion
-                    question={question}
-                    value={currentValue}
-                    onChange={handleAnswer}
-                  />
+                  <DateQuestion question={question} value={currentValue} onChange={handleAnswer} />
                 )}
 
-                {/* Error display */}
                 {errors[question.id] && question.type === "radio" && (
-                  <p className="form-error" role="alert">⚠ {errors[question.id]}</p>
+                  <p className="form-error" role="alert">
+                    ⚠ {errors[question.id]}
+                  </p>
                 )}
               </div>
 
               {/* Navigation */}
               <div className="wizard-nav">
                 <button
-                  className="btn-ghost"
+                  className="btn btn-ghost"
                   onClick={handleBack}
                   disabled={currentIndex === 0}
                   style={{ opacity: currentIndex === 0 ? 0.35 : 1 }}
@@ -353,16 +394,22 @@ export default function WizardPage() {
                   ← Back
                 </button>
 
-                <div className="flex gap-2">
+                <div style={{ display: "flex", gap: "0.5rem" }}>
                   {question.optional && (
-                    <button className="btn-ghost btn-sm" onClick={handleSkip} aria-label="Skip this question">
+                    <button
+                      className="btn btn-ghost btn-sm"
+                      onClick={handleSkip}
+                      aria-label="Skip this question"
+                    >
                       Skip
                     </button>
                   )}
                   <button
-                    className="btn-primary"
+                    className="btn btn-primary"
                     onClick={handleNext}
-                    aria-label={currentIndex === questions.length - 1 ? "Review answers" : "Next question"}
+                    aria-label={
+                      currentIndex === questions.length - 1 ? "Review answers" : "Next question"
+                    }
                   >
                     {currentIndex === questions.length - 1 ? "Review →" : "Next →"}
                   </button>
@@ -370,8 +417,16 @@ export default function WizardPage() {
               </div>
 
               {/* Privacy note */}
-              <p style={{ textAlign: "center", fontSize: "0.7rem", color: "#334155", marginTop: "1.25rem" }}>
-                🔒 Answers are stored only in your browser's memory and cleared when you leave this page.
+              <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "0.7rem",
+                  color: "var(--color-ink-4-light)",
+                  marginTop: "1.25rem",
+                }}
+              >
+                🔒 Answers are stored only in your browser&apos;s memory and cleared when you leave
+                this page.
               </p>
             </>
           )}
