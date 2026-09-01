@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { RefreshCw, CheckCircle2, AlertCircle, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { fetchNationalCensus, fetchStatesCensus, fetchCensusStatus } from "../lib/api.js";
 
 // ────────────────────────────────────────────────────────────
@@ -7,6 +8,7 @@ import { fetchNationalCensus, fetchStatesCensus, fetchCensusStatus } from "../li
 // backend and displays national + state summaries.
 // ────────────────────────────────────────────────────────────
 export default function CensusDataPage() {
+  const { t } = useTranslation();
   const [national, setNational] = useState(null);
   const [states, setStates] = useState([]);
   const [status, setStatus] = useState(null);
@@ -52,10 +54,8 @@ export default function CensusDataPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[22px] font-bold text-gray-800">Census Data Explorer</h1>
-            <p className="text-[12.5px] text-gray-400 mt-0.5">
-              Live pull from censusindia.gov.in with mock fallback
-            </p>
+            <h1 className="text-[22px] font-bold text-gray-800">{t("census.title")}</h1>
+            <p className="text-[12.5px] text-gray-400 mt-0.5">{t("census.subtitle")}</p>
           </div>
           <button
             onClick={() => load(true)}
@@ -63,7 +63,7 @@ export default function CensusDataPage() {
             className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-emerald-500 text-white text-[12px] font-semibold hover:bg-emerald-600 disabled:opacity-40 transition-colors"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
-            Refresh
+            {t("census.refresh")}
           </button>
         </div>
 
@@ -72,7 +72,7 @@ export default function CensusDataPage() {
           <div className="flex items-center gap-3 bg-white rounded-xl border border-gray-100 shadow-sm px-4 py-2.5">
             <Globe className="w-4 h-4 text-gray-400" />
             <span className="text-[11px] text-gray-500">
-              API: <span className="font-mono text-gray-700">{status.endpoint}</span>
+              {t("census.api")} <span className="font-mono text-gray-700">{status.endpoint}</span>
             </span>
             <span
               className={`flex items-center gap-1 text-[11px] ${status.liveEnabled ? "text-emerald-600" : "text-gray-400"}`}
@@ -82,7 +82,7 @@ export default function CensusDataPage() {
               ) : (
                 <AlertCircle className="w-3 h-3" />
               )}
-              {status.liveEnabled ? "Live pull enabled" : "Fallback mode"}
+              {status.liveEnabled ? t("census.livePull") : t("census.fallback")}
             </span>
           </div>
         )}
@@ -97,17 +97,20 @@ export default function CensusDataPage() {
         {national && (
           <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
             <h2 className="text-[15px] font-semibold text-gray-800 mb-3">
-              National Overview — Census {national.censusYear}
+              {t("census.nationalTitle", { year: national.censusYear })}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               <StatCard
-                label="Total Population"
+                label={t("census.totalPopulation")}
                 value={national.totalPopulation?.toLocaleString("en-IN")}
               />
-              <StatCard label="Males" value={national.males?.toLocaleString("en-IN")} />
-              <StatCard label="Females" value={national.females?.toLocaleString("en-IN")} />
-              <StatCard label="Sex Ratio" value={`${national.sexRatio} / 1000`} />
-              <StatCard label="Literacy Rate" value={`${national.literacyRate}%`} />
+              <StatCard label={t("census.males")} value={national.males?.toLocaleString("en-IN")} />
+              <StatCard
+                label={t("census.females")}
+                value={national.females?.toLocaleString("en-IN")}
+              />
+              <StatCard label={t("census.sexRatio")} value={`${national.sexRatio} / 1000`} />
+              <StatCard label={t("census.literacy")} value={`${national.literacyRate}%`} />
             </div>
           </section>
         )}
@@ -116,17 +119,17 @@ export default function CensusDataPage() {
         {states.length > 0 && (
           <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-5 py-3 border-b border-gray-100">
-              <h2 className="text-[15px] font-semibold text-gray-800">State-Level Data</h2>
+              <h2 className="text-[15px] font-semibold text-gray-800">{t("census.stateTitle")}</h2>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-gray-50 text-gray-400 text-[11px] font-semibold uppercase tracking-wide">
-                    <th className="px-4 py-2.5">State</th>
-                    <th className="px-4 py-2.5 text-right">Population</th>
-                    <th className="px-4 py-2.5 text-right">Sex Ratio</th>
-                    <th className="px-4 py-2.5 text-right">Literacy</th>
-                    <th className="px-4 py-2.5 text-right">Census</th>
+                    <th className="px-4 py-2.5">{t("census.colState")}</th>
+                    <th className="px-4 py-2.5 text-right">{t("census.colPopulation")}</th>
+                    <th className="px-4 py-2.5 text-right">{t("census.colSexRatio")}</th>
+                    <th className="px-4 py-2.5 text-right">{t("census.colLiteracy")}</th>
+                    <th className="px-4 py-2.5 text-right">{t("census.colCensus")}</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -1,10 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useState, useEffect, useRef } from "react";
 
 const ROLES = [
-  { id: "citizen", label: "Citizen View", icon: "👤" },
-  { id: "policy", label: "Policy Maker", icon: "🏛️" },
-  { id: "research", label: "Researcher", icon: "🔬" },
+  { id: "citizen", labelKey: "nav.roleCitizen", icon: "👤" },
+  { id: "policy", labelKey: "nav.rolePolicy", icon: "🏛️" },
+  { id: "research", labelKey: "nav.roleResearch", icon: "🔬" },
 ];
 
 const PIN_DISTRICTS = [
@@ -18,9 +19,9 @@ const PIN_DISTRICTS = [
   { id: "UP", name: "Uttar Pradesh" },
 ];
 
-function VerifiedBadge() {
+function VerifiedBadge({ t }) {
   return (
-    <span className="logo-verified" title="National Census Registry — Verified Data Stream">
+    <span className="logo-verified" title={t("nav.verified")}>
       <svg viewBox="0 0 16 16" fill="none">
         <path
           d="M8 1.5l1.7 1.2 2.2-.3.2 2.2 2 .6-1.3 1.8L14.5 9l-1.6 1.2.2 2.2-2.2-.3L9.8 13.3l-.7-2.1L8 10.3l-1.1.9-.7 2.1-1.7-.8.2-2.2L3.1 9l1.5-1.4L3.3 5.6l2-.6.2-2.2 2.2.3z"
@@ -28,12 +29,77 @@ function VerifiedBadge() {
         />
         <path d="M6.5 10.8l-1.9-1.9.7-.7 1.2 1.2 2.9-2.9.7.7z" fill="#fff" />
       </svg>
-      Verified Data Stream
+      {t("nav.verifiedLabel")}
     </span>
   );
 }
 
+function LanguageSwitcher() {
+  const { i18n, t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const current = i18n.resolvedLanguage?.startsWith("hi") ? "hi" : "en";
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (e) => {
+      if (!e.target.closest(".lang-switcher")) setOpen(false);
+    };
+    window.addEventListener("mousedown", close);
+    return () => window.removeEventListener("mousedown", close);
+  }, [open]);
+
+  const setLang = (lng) => {
+    i18n.changeLanguage(lng);
+    setOpen(false);
+  };
+
+  return (
+    <div className="lang-switcher" style={{ position: "relative" }} ref={ref}>
+      <button
+        className="role-btn lang-btn"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-label={t("language.select")}
+      >
+        <span className="role-btn-active">{current === "hi" ? "हिन्दी" : "EN"}</span>
+        <span className="role-btn-caret" />
+      </button>
+      {open && (
+        <div className="role-menu" role="menu" style={{ minWidth: 140 }}>
+          <div
+            style={{
+              padding: ".2rem .6rem",
+              fontSize: ".62rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: ".08em",
+              color: "var(--color-ink-4-light)",
+            }}
+          >
+            {t("language.select")}
+          </div>
+          {[
+            { id: "en", label: t("language.en") },
+            { id: "hi", label: t("language.hi") },
+          ].map((l) => (
+            <button
+              key={l.id}
+              className={`role-option${current === l.id ? " active" : ""}`}
+              onClick={() => setLang(l.id)}
+              role="menuitem"
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Navbar({ onSearchOpen }) {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
   const [activeRole, setActiveRole] = useState(ROLES[0]);
@@ -84,7 +150,7 @@ export default function Navbar({ onSearchOpen }) {
             </div>
             <div className="logo-sub">Census 2027</div>
           </div>
-          <VerifiedBadge />
+          <VerifiedBadge t={t} />
           <span className="logo-tooltip" role="tooltip">
             टैली · Tally
           </span>
@@ -93,16 +159,16 @@ export default function Navbar({ onSearchOpen }) {
         {/* Desktop nav */}
         <ul className="nav-links" role="list">
           {[
-            { to: "/dates", label: "Dates" },
-            { to: "/wizard", label: "Wizard" },
-            { to: "/chat", label: "Chat" },
-            { to: "/census-data", label: "Census" },
-            { to: "/privacy", label: "Privacy" },
-            { to: "/viz", label: "Data" },
-          ].map(({ to, label }) => (
+            { to: "/dates", labelKey: "nav.dates" },
+            { to: "/wizard", labelKey: "nav.wizard" },
+            { to: "/chat", labelKey: "nav.chat" },
+            { to: "/census-data", labelKey: "nav.census" },
+            { to: "/privacy", labelKey: "nav.privacy" },
+            { to: "/viz", labelKey: "nav.data" },
+          ].map(({ to, labelKey }) => (
             <li key={to}>
               <NavLink to={to} className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>
-                {label}
+                {t(labelKey)}
               </NavLink>
             </li>
           ))}
@@ -112,7 +178,7 @@ export default function Navbar({ onSearchOpen }) {
         <button
           className="nav-search-dock"
           onClick={() => onSearchOpen?.()}
-          aria-label="Quick search — press Command+K or Control+K"
+          aria-label={t("nav.searchShort") + " — Command+K"}
         >
           <svg className="nav-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path
@@ -122,7 +188,7 @@ export default function Navbar({ onSearchOpen }) {
               strokeLinecap="round"
             />
           </svg>
-          <span className="nav-search-text">Search states, data…</span>
+          <span className="nav-search-text">{t("nav.search")}</span>
           <span className="nav-search-kbd">⌘K</span>
         </button>
 
@@ -137,10 +203,10 @@ export default function Navbar({ onSearchOpen }) {
                 setPinMenuOpen(false);
               }}
               aria-expanded={roleMenuOpen}
-              aria-label="Switch role"
+              aria-label={t("nav.role")}
             >
               <span className="role-btn-active">
-                {activeRole.icon} {activeRole.label}
+                {activeRole.icon} {t(activeRole.labelKey)}
               </span>
               <span className="role-btn-caret" />
             </button>
@@ -156,7 +222,7 @@ export default function Navbar({ onSearchOpen }) {
                     }}
                     role="menuitem"
                   >
-                    {r.icon} {r.label}
+                    {r.icon} {t(r.labelKey)}
                   </button>
                 ))}
               </div>
@@ -172,7 +238,7 @@ export default function Navbar({ onSearchOpen }) {
                 setRoleMenuOpen(false);
               }}
               aria-expanded={pinMenuOpen}
-              aria-label="Set as My Home District"
+              aria-label={t("nav.pinDistrict")}
             >
               <svg className="pin-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path
@@ -182,7 +248,7 @@ export default function Navbar({ onSearchOpen }) {
               </svg>
               {pinnedDistrict
                 ? PIN_DISTRICTS.find((d) => d.id === pinnedDistrict)?.name
-                : "Pin District"}
+                : t("nav.pinDistrict")}
             </button>
             {pinMenuOpen && (
               <div className="role-menu" role="menu" style={{ minWidth: 170 }}>
@@ -196,7 +262,7 @@ export default function Navbar({ onSearchOpen }) {
                     color: "var(--color-ink-4-light)",
                   }}
                 >
-                  My Home District
+                  {t("nav.pinMenu")}
                 </div>
                 {PIN_DISTRICTS.map((d) => (
                   <button
@@ -215,15 +281,18 @@ export default function Navbar({ onSearchOpen }) {
             )}
           </div>
 
+          {/* Language switcher */}
+          <LanguageSwitcher />
+
           {/* Official CTA */}
           <a
             href="https://censusindia.gov.in"
             target="_blank"
             rel="noopener noreferrer"
             className="official-cta"
-            aria-label="Official Census portal (opens in new tab)"
+            aria-label={t("nav.official") + " ↗"}
           >
-            Official Portal ↗
+            {t("nav.official")} ↗
           </a>
 
           {/* Mobile toggle */}
@@ -233,7 +302,7 @@ export default function Navbar({ onSearchOpen }) {
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? t("nav.menuClose") : t("nav.menuOpen")}
           >
             {menuOpen ? "✕" : "☰"}
           </button>
@@ -244,13 +313,13 @@ export default function Navbar({ onSearchOpen }) {
       {menuOpen && (
         <div id="mobile-menu" className="container mobile-menu" role="menu">
           {[
-            { to: "/dates", label: "📅 Dates" },
-            { to: "/wizard", label: "🧭 Wizard" },
-            { to: "/chat", label: "💬 Chat" },
-            { to: "/census-data", label: "📊 Census" },
-            { to: "/privacy", label: "🔒 Privacy" },
-            { to: "/viz", label: "📊 Data" },
-          ].map(({ to, label }) => (
+            { to: "/dates", labelKey: "nav.dates", icon: "📅" },
+            { to: "/wizard", labelKey: "nav.wizard", icon: "🧭" },
+            { to: "/chat", labelKey: "nav.chat", icon: "💬" },
+            { to: "/census-data", labelKey: "nav.census", icon: "📊" },
+            { to: "/privacy", labelKey: "nav.privacy", icon: "🔒" },
+            { to: "/viz", labelKey: "nav.data", icon: "📊" },
+          ].map(({ to, labelKey, icon }) => (
             <NavLink
               key={to}
               to={to}
@@ -258,7 +327,7 @@ export default function Navbar({ onSearchOpen }) {
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) => `mobile-nav-link${isActive ? " active" : ""}`}
             >
-              {label}
+              {icon} {t(labelKey)}
             </NavLink>
           ))}
           <a
@@ -269,7 +338,7 @@ export default function Navbar({ onSearchOpen }) {
             style={{ color: "var(--color-terracotta)" }}
             onClick={() => setMenuOpen(false)}
           >
-            Official Portal ↗
+            {t("nav.official")} ↗
           </a>
         </div>
       )}

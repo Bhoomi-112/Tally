@@ -1,10 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import censusData from "../modules/dates/data/census-dates.json";
 import { getPhaseStatus } from "../modules/dates/dates.utils.js";
 import KPISummary from "../components/dashboard/KPISummary.jsx";
 import MapCanvas from "../components/dashboard/MapCanvas.jsx";
 import InsightsPanel from "../components/dashboard/InsightsPanel.jsx";
+
+const ICONS = ["📅", "🧭", "💬", "🔒", "📊"];
 
 function computeStats() {
   let active = 0,
@@ -20,11 +23,11 @@ function computeStats() {
   return { active, upcoming, completed, total: censusData.states.length };
 }
 
-function getGreeting() {
+function getGreeting(t) {
   const h = new Date().getHours();
-  if (h < 12) return "Good morning";
-  if (h < 17) return "Good afternoon";
-  return "Good evening";
+  if (h < 12) return t("home.goodMorning");
+  if (h < 17) return t("home.goodAfternoon");
+  return t("home.goodEvening");
 }
 
 function getGreetingEmoji() {
@@ -34,50 +37,49 @@ function getGreetingEmoji() {
   return "🌙";
 }
 
-const MODULES = [
-  {
-    to: "/dates",
-    title: "Census Dates",
-    desc: "State-wise Phase I & II schedule for all 36 states & UTs.",
-    badge: "Live",
-    live: true,
-  },
-  {
-    to: "/wizard",
-    title: "Enumeration Wizard",
-    desc: "Step-by-step guide through all official census questions.",
-    badge: "Live",
-    live: true,
-  },
-  {
-    to: "/chat",
-    title: "AI Explainer",
-    desc: "RAG chatbot grounded in official PIB/RGI documents — no hallucinated facts.",
-    badge: "Soon",
-    live: false,
-  },
-  {
-    to: "/privacy",
-    title: "Privacy Guide",
-    desc: "What's collected, what's protected, and how to spot scams.",
-    badge: "Soon",
-    live: false,
-  },
-  {
-    to: "/viz",
-    title: "Data Explorer",
-    desc: "Visualize public 2011/2021 census data with natural language.",
-    badge: "Soon",
-    live: false,
-  },
-];
-
-const ICONS = ["📅", "🧭", "💬", "🔒", "📊"];
-
 export default function HomePage() {
+  const { t } = useTranslation();
   const stats = computeStats();
   const [selectedState, setSelectedState] = useState(null);
-  const greeting = getGreeting();
+  const greeting = getGreeting(t);
+
+  const MODULES = [
+    {
+      to: "/dates",
+      title: t("home.moduleDates"),
+      desc: t("home.moduleDatesDesc"),
+      badge: t("home.badgeLive"),
+      live: true,
+    },
+    {
+      to: "/wizard",
+      title: t("home.moduleWizard"),
+      desc: t("home.moduleWizardDesc"),
+      badge: t("home.badgeLive"),
+      live: true,
+    },
+    {
+      to: "/chat",
+      title: t("home.moduleChat"),
+      desc: t("home.moduleChatDesc"),
+      badge: t("home.badgeSoon"),
+      live: true,
+    },
+    {
+      to: "/privacy",
+      title: t("home.modulePrivacy"),
+      desc: t("home.modulePrivacyDesc"),
+      badge: t("home.badgeSoon"),
+      live: false,
+    },
+    {
+      to: "/viz",
+      title: t("home.moduleData"),
+      desc: t("home.moduleDataDesc"),
+      badge: t("home.badgeSoon"),
+      live: true,
+    },
+  ];
 
   return (
     <main className="page" style={{ paddingTop: 0 }}>
@@ -90,7 +92,7 @@ export default function HomePage() {
               {greeting}, Bhoomi {getGreetingEmoji()}
             </div>
             <div className="greeting-sub">
-              Tracking demographic shifts across Maharashtra &amp; {stats.total - 1} States
+              {t("home.tracking", { count: stats.total - 1 })}
             </div>
           </div>
           <div className="greeting-stat">
@@ -104,7 +106,7 @@ export default function HomePage() {
                 strokeLinejoin="round"
               />
             </svg>
-            {stats.active} Active
+            {stats.active} {t("home.active")}
           </div>
         </div>
 
@@ -122,8 +124,8 @@ export default function HomePage() {
         </div>
 
         {/* Module cards */}
-        <section style={{ marginTop: "2.25rem" }} aria-label="Tally modules">
-          <div className="section-label animate-fade-up delay-300">Modules</div>
+        <section style={{ marginTop: "2.25rem" }} aria-label={t("home.modules")}>
+          <div className="section-label animate-fade-up delay-300">{t("home.modules")}</div>
           <div className="module-grid animate-fade-up delay-400">
             {MODULES.map(({ to, title, desc, badge, live }, i) => (
               <NavLink
@@ -157,15 +159,8 @@ export default function HomePage() {
 
         {/* Privacy guarantee */}
         <div className="privacy-banner animate-fade-up delay-500" style={{ marginTop: "1.75rem" }}>
-          <div className="privacy-banner-title">🛡️ Privacy Guarantee</div>
-          <p className="privacy-banner-text">
-            Tally is an{" "}
-            <strong style={{ color: "var(--color-verified)" }}>assistive layer only</strong>. It
-            never stores, transmits, or persists Aadhaar numbers, voter IDs, or any census
-            responses. Identifiers you type are validated in-browser using a local checksum and
-            immediately cleared from memory. The official RGI Census portal is the sole system of
-            record.
-          </p>
+          <div className="privacy-banner-title">{t("home.privacyTitle")}</div>
+          <p className="privacy-banner-text">{t("home.privacyText")}</p>
         </div>
 
         <div style={{ height: "3rem" }} />

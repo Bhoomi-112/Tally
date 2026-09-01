@@ -1,66 +1,91 @@
-import { useState, useCallback } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
-import SearchModal from "./components/SearchModal.jsx";
+import AppLayout from "./components/AppLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import DatesPage from "./modules/dates/DatesPage.jsx";
 import WizardPage from "./modules/wizard/WizardPage.jsx";
 import ComingSoon from "./pages/ComingSoon.jsx";
-import IntelPage from "./intel/IntelPage.jsx";
-import StudioPage from "./studio/StudioPage.jsx";
-import ChatPage from "./pages/ChatPage.jsx";
-import CensusDataPage from "./pages/CensusDataPage.jsx";
-import AuthPage from "./pages/AuthPage.jsx";
+
+// Immersive/standalone pages are code-split so they never block first paint.
+const IntelPage = lazy(() => import("./intel/IntelPage.jsx"));
+const StudioPage = lazy(() => import("./studio/StudioPage.jsx"));
+const ChatPage = lazy(() => import("./pages/ChatPage.jsx"));
+const CensusDataPage = lazy(() => import("./pages/CensusDataPage.jsx"));
+const AuthPage = lazy(() => import("./pages/AuthPage.jsx"));
+
+function PageLoader() {
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <span className="navbar-logo-loading" aria-hidden="true">
+        ⏳
+      </span>
+    </div>
+  );
+}
 
 export default function App() {
-  const [searchOpen, setSearchOpen] = useState(false);
-  const handleSearchOpen = useCallback(() => setSearchOpen(true), []);
-  const handleSearchClose = useCallback(() => setSearchOpen(false), []);
-
   return (
     <BrowserRouter>
-      {/* Dedicated full-chrome pages (own backgrounds/shells, no shared nav/footer) */}
       <Routes>
-        <Route path="/intel" element={<IntelPage />} />
-        <Route path="/viz" element={<IntelPage />} />
-        <Route path="/studio" element={<StudioPage />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/census-data" element={<CensusDataPage />} />
-        <Route path="/auth" element={<AuthPage />} />
+        {/* Immersive full-chrome pages (no shared nav/footer) */}
+        <Route
+          path="/intel"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <IntelPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/viz"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <IntelPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/studio"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <StudioPage />
+            </Suspense>
+          }
+        />
+
+        {/* Pages under shared chrome (navbar + search + footer) */}
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dates" element={<DatesPage />} />
+          <Route path="/wizard" element={<WizardPage />} />
+          <Route path="/privacy" element={<ComingSoon title="Privacy Guide" icon="🔒" />} />
+          <Route
+            path="/chat"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <ChatPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/census-data"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <CensusDataPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/auth"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <AuthPage />
+              </Suspense>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
       </Routes>
-
-      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-        <Navbar onSearchOpen={handleSearchOpen} />
-        <SearchModal open={searchOpen} onClose={handleSearchClose} />
-        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/dates" element={<DatesPage />} />
-            <Route path="/wizard" element={<WizardPage />} />
-            <Route path="/privacy" element={<ComingSoon title="Privacy Guide" icon="🔒" />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
-
-        <footer className="footer">
-          <div className="container footer-inner">
-            <span className="footer-mark">🗳️ Tally</span>
-            <p className="footer-text">
-              An assistive layer for Census 2027 — <strong>not</strong> affiliated with or endorsed
-              by the Registrar General of India.{" "}
-              <a
-                href="https://censusindia.gov.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "var(--color-terracotta)", fontWeight: 600 }}
-              >
-                censusindia.gov.in
-              </a>{" "}
-              is the official portal.
-            </p>
-          </div>
-        </footer>
-      </div>
     </BrowserRouter>
   );
 }

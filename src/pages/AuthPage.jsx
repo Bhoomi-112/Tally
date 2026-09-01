@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Mail, Lock, User, LogIn, Loader2, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { login, register, logout, onAuthChange, isFirebaseConfigured } from "../lib/firebase.js";
 
 // ────────────────────────────────────────────────────────────
@@ -8,6 +9,7 @@ import { login, register, logout, onAuthChange, isFirebaseConfigured } from "../
 // state when Firebase env vars are missing.
 // ────────────────────────────────────────────────────────────
 export default function AuthPage() {
+  const { t } = useTranslation();
   const [user, setUser] = useState(undefined); // undefined = loading, null = logged out
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
@@ -67,20 +69,22 @@ export default function AuthPage() {
           <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto mb-3">
             <User className="w-6 h-6" />
           </div>
-          <h2 className="text-[16px] font-semibold text-gray-800">{user.displayName || "User"}</h2>
+          <h2 className="text-[16px] font-semibold text-gray-800">
+            {user.displayName || t("auth.user")}
+          </h2>
           <p className="text-[12.5px] text-gray-400 mt-0.5">{user.email}</p>
           <div className="mt-5 flex flex-col gap-2">
             <a
               href="/chat"
               className="h-9 rounded-lg bg-emerald-500 text-white text-[13px] font-semibold flex items-center justify-center hover:bg-emerald-600 transition-colors"
             >
-              Open Chat
+              {t("auth.openChat")}
             </a>
             <button
               onClick={handleLogout}
               className="h-9 rounded-lg border border-gray-200 text-gray-500 text-[13px] font-medium hover:bg-gray-50 transition-colors"
             >
-              Sign out
+              {t("auth.signOut")}
             </button>
           </div>
         </div>
@@ -96,16 +100,15 @@ export default function AuthPage() {
           <div className="w-12 h-12 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto mb-3">
             <AlertCircle className="w-6 h-6" />
           </div>
-          <h2 className="text-[16px] font-semibold text-gray-800 mb-1">Firebase not configured</h2>
-          <p className="text-[12.5px] text-gray-400">
-            Set <span className="font-mono text-gray-600">VITE_FIREBASE_API_KEY</span> and other
-            Firebase keys in <span className="font-mono text-gray-600">.env.local</span>.
-          </p>
+          <h2 className="text-[16px] font-semibold text-gray-800 mb-1">
+            {t("auth.notConfiguredTitle")}
+          </h2>
+          <p className="text-[12.5px] text-gray-400">{t("auth.notConfiguredText")}</p>
           <a
             href="/"
             className="inline-block mt-4 h-9 px-4 rounded-lg bg-gray-800 text-white text-[13px] font-medium hover:bg-gray-900 transition-colors"
           >
-            Back to home
+            {t("auth.backHome")}
           </a>
         </div>
       </div>
@@ -131,7 +134,7 @@ export default function AuthPage() {
                   : "text-gray-400 hover:text-gray-600"
               }`}
             >
-              {m === "login" ? "Sign in" : "Register"}
+              {m === "login" ? t("auth.signIn") : t("auth.register")}
             </button>
           ))}
         </div>
@@ -140,7 +143,7 @@ export default function AuthPage() {
           {mode === "register" && (
             <Field
               icon={<User className="w-4 h-4" />}
-              placeholder="Display name"
+              placeholder={t("auth.displayName")}
               value={name}
               onChange={setName}
             />
@@ -148,7 +151,7 @@ export default function AuthPage() {
           <Field
             icon={<Mail className="w-4 h-4" />}
             type="email"
-            placeholder="Email"
+            placeholder={t("auth.email")}
             value={email}
             onChange={setEmail}
             required
@@ -156,7 +159,7 @@ export default function AuthPage() {
           <Field
             icon={<Lock className="w-4 h-4" />}
             type="password"
-            placeholder="Password"
+            placeholder={t("auth.password")}
             value={password}
             onChange={setPassword}
             required
@@ -175,7 +178,7 @@ export default function AuthPage() {
             className="w-full h-10 rounded-xl bg-emerald-500 text-white text-[13px] font-semibold flex items-center justify-center gap-1.5 hover:bg-emerald-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <LogIn className="w-4 h-4" />}
-            {mode === "login" ? "Sign in" : "Create account"}
+            {mode === "login" ? t("auth.signIn") : t("auth.createAccount")}
           </button>
         </form>
       </div>

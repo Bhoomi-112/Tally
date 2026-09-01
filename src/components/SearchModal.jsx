@@ -1,23 +1,25 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import censusData from "../modules/dates/data/census-dates.json";
 
-const SEARCH_ITEMS = [
-  { icon: "📊", label: "Dashboard Overview", meta: "Home", to: "/" },
-  { icon: "📅", label: "Census Dates — All States", meta: "Dates", to: "/dates" },
-  { icon: "🧭", label: "Enumeration Wizard", meta: "Wizard", to: "/wizard" },
-  ...censusData.states.map((s) => ({
-    icon: "🗺️",
-    label: s.name,
-    meta: s.region,
-    to: `/dates#state-card-${s.id}`,
-  })),
-];
-
 export default function SearchModal({ open, onClose }) {
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const inputRef = useRef(null);
+
+  const SEARCH_ITEMS = [
+    { icon: "📊", label: t("search.dashboard"), meta: t("search.home"), to: "/" },
+    { icon: "📅", label: t("search.allDates"), meta: t("nav.dates"), to: "/dates" },
+    { icon: "🧭", label: t("search.wizardModule"), meta: t("nav.wizard"), to: "/wizard" },
+    ...censusData.states.map((s) => ({
+      icon: "🗺️",
+      label: s.name,
+      meta: s.region,
+      to: `/dates#state-card-${s.id}`,
+    })),
+  ];
 
   const filtered = query.trim()
     ? SEARCH_ITEMS.filter((i) => i.label.toLowerCase().includes(query.toLowerCase()))
@@ -61,7 +63,7 @@ export default function SearchModal({ open, onClose }) {
       className="search-overlay"
       onClick={handleClose}
       role="dialog"
-      aria-label="Quick search"
+      aria-label={t("search.label")}
       aria-modal="true"
     >
       <div className="search-modal" onClick={(e) => e.stopPropagation()}>
@@ -77,7 +79,7 @@ export default function SearchModal({ open, onClose }) {
           <input
             ref={inputRef}
             className="search-field"
-            placeholder="Search states, modules, data…"
+            placeholder={t("search.placeholder")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -91,7 +93,7 @@ export default function SearchModal({ open, onClose }) {
           {filtered.length > 0 ? (
             <div className="search-section">
               <div className="search-section-label">
-                {query ? `Results for "${query}"` : "Quick access"}
+                {query ? t("search.resultsFor", { query }) : t("search.quickAccess")}
               </div>
               {filtered.slice(0, 10).map((item, i) => (
                 <button key={i} className="search-item" onClick={() => handleSelect(item)}>
@@ -111,16 +113,16 @@ export default function SearchModal({ open, onClose }) {
               ))}
             </div>
           ) : (
-            <div className="search-rec">No results found</div>
+            <div className="search-rec">{t("search.noResults")}</div>
           )}
         </div>
 
         <div className="search-footer">
           <span className="search-shortcut">
-            <kbd className="kbd">↵</kbd> Select
+            <kbd className="kbd">↵</kbd> {t("search.select")}
           </span>
           <span className="search-shortcut">
-            <kbd className="kbd">ESC</kbd> Close
+            <kbd className="kbd">ESC</kbd> {t("search.close")}
           </span>
         </div>
       </div>

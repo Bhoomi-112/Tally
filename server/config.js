@@ -37,4 +37,5 @@ export const config = {
   },
 
   corsOrigin: env.CORS_ORIGIN || "*",
+  trustProxy: env.TRUST_PROXY === "true",
 };

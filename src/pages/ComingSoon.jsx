@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ComingSoon({ title, icon }) {
+  const { t } = useTranslation();
   return (
-    <main className="page" aria-label={`${title} — coming soon`}>
+    <main className="page" aria-label={`${title} — ${t("comingSoon.comingSoon")}`}>
       <div
         className="container"
         style={{ textAlign: "center", paddingTop: "5rem", paddingBottom: "5rem" }}
@@ -32,20 +34,21 @@ export default function ComingSoon({ title, icon }) {
           className="page-desc animate-fade-up delay-200"
           style={{ margin: "0 auto 2rem", textAlign: "center" }}
         >
-          This module is coming soon. The{" "}
-          <strong style={{ color: "var(--color-terracotta)" }}>Census Dates</strong> and{" "}
-          <strong style={{ color: "var(--color-terracotta)" }}>Enumeration Wizard</strong> modules
-          are available now.
+          {t("comingSoon.comingSoon")}{" "}
+          <strong style={{ color: "var(--color-terracotta)" }}>Census Dates</strong> {""}
+          {t("comingSoon.and")}{" "}
+          <strong style={{ color: "var(--color-terracotta)" }}>Enumeration Wizard</strong>{" "}
+          {t("comingSoon.availableNow")}
         </p>
         <div
           style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}
           className="animate-fade-up delay-300"
         >
           <NavLink to="/dates" className="btn btn-primary">
-            📅 View Dates
+            {t("comingSoon.viewDates")}
           </NavLink>
           <NavLink to="/wizard" className="btn btn-ghost">
-            🧭 Try Wizard
+            {t("comingSoon.tryWizard")}
           </NavLink>
         </div>
       </div>

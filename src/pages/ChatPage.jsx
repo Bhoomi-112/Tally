@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Send, Bot, User, Loader2, Info } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { chatWithTally } from "../lib/api.js";
 
 // ────────────────────────────────────────────────────────────
@@ -7,10 +8,11 @@ import { chatWithTally } from "../lib/api.js";
 // Messages are PII-guarded on the server via lib/pii-guard.
 // ────────────────────────────────────────────────────────────
 export default function ChatPage() {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      text: "Hello, I'm Tally — your Census intelligence assistant. Ask me anything about India's population data (Census 2011).",
+      text: t("chat.welcome"),
     },
   ]);
   const [input, setInput] = useState("");
@@ -35,14 +37,19 @@ export default function ChatPage() {
 
     try {
       const res = await chatWithTally(q, history);
-      const answer = res.ok ? res.answer : `Error: ${res.error || "unknown error"}`;
+      const answer = res.ok
+        ? res.answer
+        : t("chat.errorPrefix") + (res.error || "unknown error");
       setMessages((m) => [...m, { role: "assistant", text: answer }]);
     } catch (err) {
-      setMessages((m) => [...m, { role: "assistant", text: `Connection error: ${err.message}` }]);
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", text: t("chat.connectionError", { msg: err.message }) },
+      ]);
     } finally {
       setLoading(false);
     }
-  }, [input, loading, messages]);
+  }, [input, loading, messages, t]);
 
   const onKey = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -60,15 +67,15 @@ export default function ChatPage() {
             <Bot className="w-4 h-4" />
           </div>
           <div>
-            <h1 className="text-[14px] font-semibold text-gray-800">Tally Chat</h1>
+            <h1 className="text-[14px] font-semibold text-gray-800">{t("chat.title")}</h1>
             <div className="flex items-center gap-1 text-[11px] text-gray-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Census-grounded · RAG
+              {t("chat.subtitle")}
             </div>
           </div>
           <div className="ml-auto flex items-center gap-1 text-[10px] text-gray-300 bg-gray-50 rounded-lg px-2 py-1">
             <Info className="w-3 h-3" />
-            Gemini 2.0 Flash
+            {t("chat.model")}
           </div>
         </header>
 
@@ -103,7 +110,7 @@ export default function ChatPage() {
           {loading && (
             <div className="flex items-center gap-2 text-gray-400 text-[12px]">
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              Tally is searching census data…
+              {t("chat.searching")}
             </div>
           )}
         </div>
@@ -115,7 +122,7 @@ export default function ChatPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKey}
-              placeholder="Ask about population, literacy, sex ratio…"
+              placeholder={t("chat.placeholder")}
               className="flex-1 h-10 px-4 rounded-xl bg-gray-100 text-[13px] text-gray-700 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-emerald-500/30"
               disabled={loading}
             />
@@ -123,7 +130,7 @@ export default function ChatPage() {
               onClick={send}
               disabled={loading || !input.trim()}
               className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white hover:bg-emerald-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-              aria-label="Send"
+              aria-label={t("chat.send")}
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -132,9 +139,7 @@ export default function ChatPage() {
               )}
             </button>
           </div>
-          <p className="mt-1.5 text-[10px] text-gray-300 text-center">
-            Answers are grounded in Census 2011 data · PII-scan enabled
-          </p>
+          <p className="mt-1.5 text-[10px] text-gray-300 text-center">{t("chat.footnote")}</p>
         </div>
       </div>
     </div>
